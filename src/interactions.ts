@@ -1,5 +1,5 @@
 import { InteractionResponseType, InteractionType, verifyKey } from 'discord-interactions';
-import { getValidStrengthValue } from './instructPix2pixHelpers';
+import { getValidStrengthValue } from './instructPix2PixHelpers';
 import { interactionStatus, JsonResponse } from './util';
 import { REMIX_COMMAND } from './commands';
 
@@ -26,11 +26,11 @@ export async function registerCommandsHandler(request: IRequest, env: Env) {
   });
 
   if (!response.ok) {
-    return new Response('Failed to register commands', {
+    return new Response('Failed to register commands\n', {
       status: 500,
     });
   }
-  return new Response('Registered commands');
+  return new Response('Registered commands\n');
 }
 
 export async function interactionsHandler(request: IRequest, env: Env, context: ExecutionContext) {
