@@ -6,8 +6,8 @@ import { REMIX_COMMAND } from './commands';
 import type { IRequest } from 'itty-router';
 import type { Env, Job } from './types';
 
-function getOptionValue(options: any, name: string) {
-  const option = options.find((o: any) => o.name === name);
+function getOptionValue(options: { name: string }[], name: string) {
+  const option = options.find((o) => o.name === name);
   return option?.value;
 }
 

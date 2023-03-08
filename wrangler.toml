@@ -2,11 +2,6 @@ name = "avatar-remix-bot"
 main = "src/index.ts"
 compatibility_date = "2023-01-24"
 
-# Uncomment this to use a kv namespace locally (`wrangler dev`)
-# kv_namespaces = [
-#   { binding = "AVATAR_REMIX_FOLLOWUPS", id = "abc123" }
-# ]
-
 [[queues.producers]]
 queue = "avatar-remix-jobs"
 binding = "AVATAR_REMIX_JOBS"

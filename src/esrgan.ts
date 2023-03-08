@@ -53,8 +53,14 @@ export async function startEsrgan(job: Job, env: Env, scaleFactor: number) {
   }
 }
 
+interface EsrganOutput {
+  id: string;
+  status: string;
+  output?: string;
+}
+
 export async function esrganHandler(request: IRequest, env: Env, context: ExecutionContext) {
-  const body = (await request.json()) as { id: string; status: string; output?: string };
+  const body = (await request.json()) as EsrganOutput;
   const replicateId = body.id;
 
   const jobString = await env.AVATAR_REMIX_FOLLOWUPS.get(`replicateId:${replicateId}`);

@@ -20,7 +20,7 @@ This app runs as a Cloudflare Worker and uses the [Replicate](https://replicate.
 
 ### Install dependencies
 
-This bot runs on Node and its package manager, npm.  If you don't already have node and npm set up, [following this guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+This bot runs on Node and its package manager, npm. If you don't already have node and npm set up, [following this guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 
 Install the bot's dependencies by running:
 
@@ -30,7 +30,8 @@ npm install
 
 ### Set up external accounts
 
-This bot uses [Cloudflare Workers](https://workers.cloudflare.com/) and [Replicate](https://replicate.com/).  You'll need to:
+This bot uses [Cloudflare Workers](https://workers.cloudflare.com/) and [Replicate](https://replicate.com/). You'll need to:
+
 - Set up `wrangler` locally ([see Cloudflare docs](https://developers.cloudflare.com/workers/wrangler/install-and-update/))
 - Get a [Replicate API token](https://replicate.com/account)
 
@@ -47,10 +48,12 @@ https://user-images.githubusercontent.com/310310/223584110-296e5ef3-d37c-482f-9b
 ### Envars and secrets
 
 Set up envars in `wrangler.toml`:
+
 - Update `DISCORD_APPLICATION_ID` and `DISCORD_PUBLIC_KEY` with values from the application you created in the previous step.
 - Update `WORKER_BASE_URL` with the URL of your Cloudflare worker. By default, this URL takes the form `https://avatar-remix-bot.<your worker username>.workers.dev`.
 
 Use wrangler to store secret tokens for your bot by running the following commands:
+
 - `wrangler secret put DISCORD_BOT_TOKEN` - obtain this token by clicking "View Token" on the Bot page
 - `wrangler secret put REPLICATE_API_TOKEN` - obtain this token from your Replicate account settings
 
@@ -58,7 +61,7 @@ Use wrangler to store secret tokens for your bot by running the following comman
 
 This bot uses Cloudflare to host some serverless infrastructure.
 
-First, it uses [Workers KV](https://developers.cloudflare.com/workers/runtime-apis/kv/) in order to track Replicate jobs and match callbacks with the original jobs.  Run the following command to create the KV namespace:
+First, it uses [Workers KV](https://developers.cloudflare.com/workers/runtime-apis/kv/) in order to track Replicate jobs and match callbacks with the original jobs. Run the following command to create the KV namespace:
 
 ```
 wrangler kv:namespace create AVATAR_REMIX_FOLLOWUPS
@@ -74,7 +77,7 @@ wrangler queues create avatar-remix-jobs
 
 ### Publish the Cloudflare Worker
 
-It's time to bring your worker online!  Run the following:
+It's time to bring your worker online! Run the following:
 
 ```
 wrangler publish
@@ -90,11 +93,11 @@ Published avatar-remix-bot (0.67 sec)
 Current Deployment ID: f5d24e08-a211-4bae-a573-e513b5355910
 ```
 
-If you go to https://avatar-remix-bot.<yourname>.workers.dev, you should see the message "greetings".  That means your web application is online and ready to talk with Discord :) 
+If you go to https://avatar-remix-bot.<yourname>.workers.dev, you should see the message "greetings". That means your web application is online and ready to talk with Discord :)
 
 ### Register your Interactions Endpoint URL
 
-On the "General Information" tab of your Application's settings in the developer portal, scroll down and set the "Interactions Endpoint URL" to the URL of your Cloudflare Worker.  
+On the "General Information" tab of your Application's settings in the developer portal, scroll down and set the "Interactions Endpoint URL" to the URL of your Cloudflare Worker.
 
 The URL was outputted in the previous step, and typically it is of the form https://avatar-remix-bot.<yourname>.workers.dev.
 
@@ -104,7 +107,7 @@ Once you've clicked Save Changes, Discord will test your endpoint and you will g
 
 ### Register slash commands
 
-This bots uses a `/remix` slash command, and you must register the slash command before using it for the first time.  Register it by hitting the register endpoint with a `POST` request:
+This bots uses a `/remix` slash command, and you must register the slash command before using it for the first time. Register it by hitting the register endpoint with a `POST` request:
 
 ```sh
 curl -X POST https://avatar-remix-bot.<yourname>.workers.dev/register
@@ -116,15 +119,14 @@ In the future, you'll have to do this any time you've made a change to `commands
 
 ### Invite it to your server
 
-Your bot is ready to go!  Invite it to your server by constructing an invite URL:
+Your bot is ready to go! Invite it to your server by constructing an invite URL:
 
 ```
-https://discord.com/oauth2/authorize?client_id=1067310785468043285&scope=applications.commands+bot
+https://discord.com/oauth2/authorize?client_id=<your discord application id>&scope=applications.commands+bot
 ```
 
 Replace the `client_id` above with the `DISCORD_APPLICATION_ID` you recorded earlier.
 
-That's all!  Use the `/remix` command and start remixing to your heart's content.
+That's all! Use the `/remix` command and start remixing to your heart's content.
 
 ![partially typed remix command](https://user-images.githubusercontent.com/310310/223583186-269e875b-19b6-4fc5-8832-843bdd60cfec.png)
-
