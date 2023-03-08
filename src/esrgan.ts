@@ -1,5 +1,5 @@
 import { interactionFollowup } from './util';
-import { startInstructPix2Pix } from './instructPix2pix';
+import { startInstructPix2Pix } from './instructPix2Pix';
 
 import type { IRequest } from 'itty-router';
 import type { Job, Env } from './types';

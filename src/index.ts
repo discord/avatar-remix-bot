@@ -1,6 +1,6 @@
 import { Router } from 'itty-router';
 
-import { instructPix2PixHandler } from './instructPix2pix';
+import { instructPix2PixHandler } from './instructPix2Pix';
 import { esrganHandler } from './esrgan';
 import queueHandler from './queue';
 
