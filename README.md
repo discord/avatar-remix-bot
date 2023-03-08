@@ -1,6 +1,4 @@
-## avatar-remix
-
-**Install demo bot:** https://discord.com/oauth2/authorize?client_id=1067310785468043285&scope=applications.commands+bot
+## Avatar Remix
 
 Avatar Remix is a Discord bot that lets you edit your friends' profile pictures in fun and sometimes unexpected ways.
 
