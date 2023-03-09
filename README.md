@@ -35,7 +35,7 @@ This bot uses [Cloudflare Workers](https://workers.cloudflare.com/) and [Replica
 
 ### Create a Discord application
 
-Create a new application on the [Discord Developer portal](https://discord.com/developers/applications).
+Create a new application on the [Discord Developer portal](https://discord.com/developers/applications). Give it a name like `avatar-remix-bot`.
 
 Then, in the "Bot" settings tab of your application, click "Add Bot" (we don't actually need this bot user, but we use its token for convenience...)
 
