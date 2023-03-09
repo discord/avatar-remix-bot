@@ -75,6 +75,8 @@ Second, it uses [Cloudflare Queues](https://developers.cloudflare.com/queues/pla
 wrangler queues create avatar-remix-jobs
 ```
 
+Note that Cloudflare Queues are in beta!  You might have to enable them manually in the [Cloudflare dashboard](https://dash.cloudflare.com/) by going to Workers > Queues.
+
 ### Publish the Cloudflare Worker
 
 It's time to bring your worker online! Run the following:
@@ -103,7 +105,7 @@ The URL was outputted in the previous step, and typically it is of the form http
 
 ![here's where the interaction endpoint url is set](https://user-images.githubusercontent.com/310310/223584868-ce3bc51d-fe8c-4255-a1d0-7c528d8c06f8.png)
 
-Once you've clicked Save Changes, Discord will test your endpoint and you will get a success message, indicating the bot is online.
+Once you've clicked Save Changes, Discord will test your endpoint and you will get a success message in the dev portal indicating that your changes have been saved.
 
 ### Register slash commands
 
