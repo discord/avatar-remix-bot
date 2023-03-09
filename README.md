@@ -55,7 +55,7 @@ Set up envars in `wrangler.toml`:
 Use wrangler to store secret tokens for your bot by running the following commands:
 
 - `wrangler secret put DISCORD_BOT_TOKEN` - obtain this token by clicking "View Token" on the Bot page
-- `wrangler secret put REPLICATE_API_TOKEN` - obtain this token from your Replicate account settings
+- `wrangler secret put REPLICATE_API_TOKEN` - obtain this token from your [Replicate account settings](https://replicate.com/account)
 
 ### KV store and Queues
 
