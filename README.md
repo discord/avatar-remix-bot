@@ -35,7 +35,7 @@ This bot uses [Cloudflare Workers](https://workers.cloudflare.com/) and [Replica
 
 ### Create a Discord application
 
-Create a new application on the [Discord Developer portal](https://discord.com/developers/applications).
+Create a new application on the [Discord Developer portal](https://discord.com/developers/applications). Give it a name like `avatar-remix-bot`.
 
 Then, in the "Bot" settings tab of your application, click "Add Bot" (we don't actually need this bot user, but we use its token for convenience...)
 
@@ -55,7 +55,7 @@ Set up envars in `wrangler.toml`:
 Use wrangler to store secret tokens for your bot by running the following commands:
 
 - `wrangler secret put DISCORD_BOT_TOKEN` - obtain this token by clicking "View Token" on the Bot page
-- `wrangler secret put REPLICATE_API_TOKEN` - obtain this token from your Replicate account settings
+- `wrangler secret put REPLICATE_API_TOKEN` - obtain this token from your [Replicate account settings](https://replicate.com/account)
 
 ### KV store and Queues
 
