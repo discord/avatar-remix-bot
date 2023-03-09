@@ -2,6 +2,10 @@ name = "avatar-remix-bot"
 main = "src/index.ts"
 compatibility_date = "2023-01-24"
 
+kv_namespaces = [
+  { binding = "AVATAR_REMIX_FOLLOWUPS", id = "abc123" }
+]
+
 [[queues.producers]]
 queue = "avatar-remix-jobs"
 binding = "AVATAR_REMIX_JOBS"
@@ -19,8 +23,3 @@ WORKER_BASE_URL = 'https://avatar-remix-bot.<yourname>.workers.dev'
 
 REPLICATE_INSTRUCT_PIX2PIX_MODEL_VERSION = '30c1d0b916a6f8efce20493f5d61ee27491ab2a60437c13c588468b9810ec23f'
 REPLICATE_ESRGAN_MODEL_VERSION = '42fed1c4974146d4d2414e2be2c5277c7fcf05fcc3a73abf41610695738c1d7b'
-
-[env.production]
-kv_namespaces = [
-  { binding = "AVATAR_REMIX_FOLLOWUPS", id = "abc123" }
-]
