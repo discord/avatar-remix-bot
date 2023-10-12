@@ -12,7 +12,7 @@ export const REMIX_COMMAND = {
     },
     {
       name: 'instruction',
-      description: 'The instruction for the remix',
+      description: 'What change do you want to make to the profile picture?',
       type: 3, // STRING
       required: true,
     },
