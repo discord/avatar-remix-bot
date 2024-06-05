@@ -1,5 +1,4 @@
 import { InteractionResponseType } from 'discord-interactions';
-
 import type { Env } from './types';
 
 export class JsonResponse extends Response {
@@ -20,7 +19,7 @@ export async function interactionFollowup(
 	env: Env,
 ) {
 	const discordUrl = `https://discord.com/api/v10/webhooks/${env.DISCORD_APPLICATION_ID}/${interactionToken}`;
-	await fetch(discordUrl, {
+	const response = await fetch(discordUrl, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -30,6 +29,9 @@ export async function interactionFollowup(
 			flags: 1 << 6, // ephemeral
 		}),
 	});
+	if (!response.ok) {
+		throwFetchError(response as unknown as Response);
+	}
 }
 
 export function interactionStatus(message: string) {
@@ -40,4 +42,25 @@ export function interactionStatus(message: string) {
 			flags: 1 << 6, // ephemeral
 		},
 	});
+}
+
+export async function throwFetchError(response: Response) {
+	let errorText = `Error fetching ${response.url}: ${response.status} ${response.statusText}`;
+	try {
+		const error = await response.text();
+		if (error) {
+			errorText = `${errorText} \n\n ${error}`;
+		}
+	} catch {}
+
+	throw new FetchError(errorText, response);
+}
+
+export class FetchError extends Error {
+	constructor(
+		message: string,
+		public response: Response,
+	) {
+		super(message);
+	}
 }
