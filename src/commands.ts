@@ -1,5 +1,9 @@
 // Slash command definition
-import {InteractionContextType, ApplicationIntegrationType, ApplicationCommandOptionType} from 'discord-api-types/v10';
+import {
+	ApplicationCommandOptionType,
+	ApplicationIntegrationType,
+	InteractionContextType,
+} from 'discord-api-types/v10';
 
 export const REMIX_COMMAND = {
 	name: 'remix',
@@ -9,9 +13,9 @@ export const REMIX_COMMAND = {
 		ApplicationIntegrationType.UserInstall,
 	],
 	contexts: [
-		InteractionContextType.Guild, 
-		InteractionContextType.BotDM, 
-		InteractionContextType.PrivateChannel
+		InteractionContextType.Guild,
+		InteractionContextType.BotDM,
+		InteractionContextType.PrivateChannel,
 	],
 	options: [
 		{
