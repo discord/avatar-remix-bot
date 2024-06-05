@@ -1,22 +1,25 @@
 {
   "name": "avatar-remix",
   "version": "0.0.0",
-  "devDependencies": {
-    "@cloudflare/workers-types": "^4.20230115.0",
-    "@types/upng-js": "^2.1.2",
-    "typescript": "^4.9.4",
-    "vitest": "^0.28.1",
-    "wrangler": "2.7.1"
-  },
   "private": true,
   "scripts": {
     "start": "wrangler dev",
     "deploy": "wrangler publish",
-    "test": "vitest"
+    "build": "tsc",
+    "fix": "biome check --write .",
+    "lint": "biome check ."
   },
   "dependencies": {
     "discord-interactions": "^3.2.0",
     "itty-router": "^3.0.11",
     "upng-js": "^2.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.0",
+    "@cloudflare/workers-types": "^4.20230115.0",
+    "@types/upng-js": "^2.1.2",
+    "typescript": "^4.9.4",
+    "vitest": "^0.28.1",
+    "wrangler": "2.7.1"
   }
 }
