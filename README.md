@@ -1,4 +1,4 @@
-## Avatar Remix
+# Avatar Remix
 
 This project contains code for a Discord bot that will edit friends' profile pictures in fun and sometimes unexpected ways.
 
@@ -26,7 +26,7 @@ This bot runs on Node and its package manager, npm. If you don't already have no
 
 Install the bot's dependencies by running:
 
-```
+```bash
 npm install
 ```
 
@@ -45,7 +45,7 @@ Then, in the "Bot" settings tab of your application, click "Add Bot" (we don't a
 
 See the [Getting Started](https://discord.com/developers/docs/getting-started) guide on the Discord developer portal for more details.
 
-https://user-images.githubusercontent.com/310310/223584110-296e5ef3-d37c-482f-9b4d-04f52a3dbab0.mp4
+<https://user-images.githubusercontent.com/310310/223584110-296e5ef3-d37c-482f-9b4d-04f52a3dbab0.mp4>
 
 **NOTE: if you use the code in this project to build or operate an app or bot on Discord, you will need to comply with Discord’s [Developer Terms of Service and Policy](https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service). Use of this code does not guarantee compliance.**
 
@@ -53,6 +53,7 @@ https://user-images.githubusercontent.com/310310/223584110-296e5ef3-d37c-482f-9b
 
 Set up envars in `wrangler.toml`:
 
+- Rename `example.wrangler.toml` to `wrangler.toml`
 - Update `DISCORD_APPLICATION_ID` and `DISCORD_PUBLIC_KEY` with values from the application you created in the previous step.
 - Update `WORKER_BASE_URL` with the URL of your Cloudflare worker. By default, this URL takes the form `https://avatar-remix-bot.<your worker username>.workers.dev`.
 
@@ -61,13 +62,15 @@ Use wrangler to store secret tokens for your bot by running the following comman
 - `wrangler secret put DISCORD_BOT_TOKEN` - obtain this token by clicking "View Token" on the Bot page
 - `wrangler secret put REPLICATE_API_TOKEN` - obtain this token from your [Replicate account settings](https://replicate.com/account?utm_source=project&utm_campaign=avatar-remix-bot-repo)
 
+If you want to run the app locally, rename `example.dev.vars` to `.dev.vars`, and update the variables with the appropriate secrets.  **ENSURE `.dev.vars` is in your `.gitignore`, and do not share these secrets**.
+
 ### KV store and Queues
 
 This bot uses Cloudflare to host some serverless infrastructure.
 
 First, it uses [Workers KV](https://developers.cloudflare.com/workers/runtime-apis/kv/) in order to track Replicate jobs and match callbacks with the original jobs. Run the following command to create the KV namespace:
 
-```
+```sh
 wrangler kv:namespace create AVATAR_REMIX_FOLLOWUPS
 ```
 
@@ -75,7 +78,7 @@ Take the output and paste it into `wrangler.toml`, replacing the placeholder bin
 
 Second, it uses [Cloudflare Queues](https://developers.cloudflare.com/queues/platform/javascript-apis/) to stay within Replicate rate limits during periods of heavy load (this isn't necessary unless you think a lot of people will use your app):
 
-```
+```bash
 wrangler queues create avatar-remix-jobs
 ```
 
@@ -85,13 +88,13 @@ Note that Cloudflare Queues are in beta!  You might have to enable them manually
 
 It's time to bring your worker online! Run the following:
 
-```
+```bash
 wrangler publish
 ```
 
 If all went according to plan, you should see something like this:
 
-```
+```text
 Uploaded avatar-remix-bot (1.16 sec)
 Published avatar-remix-bot (0.67 sec)
   https://avatar-remix-bot.<yourname>.workers.dev
@@ -99,13 +102,13 @@ Published avatar-remix-bot (0.67 sec)
 Current Deployment ID: f5d24e08-a211-4bae-a573-e513b5355910
 ```
 
-If you go to https://avatar-remix-bot.<yourname>.workers.dev, you should see the message "greetings". That means your web application is online and ready to talk with Discord :)
+If you go to `https://avatar-remix-bot.<yourname>.workers.dev`, you should see the message "greetings". That means your web application is online and ready to talk with Discord :)
 
 ### Register your Interactions Endpoint URL
 
 On the "General Information" tab of your Application's settings in the developer portal, scroll down and set the "Interactions Endpoint URL" to the URL of your Cloudflare Worker.
 
-The URL was outputted in the previous step, and typically it is of the form https://avatar-remix-bot.<yourname>.workers.dev.
+The URL was outputted in the previous step, and typically it is of the form `https://avatar-remix-bot.<yourname>.workers.dev`.
 
 ![here's where the interaction endpoint url is set](https://user-images.githubusercontent.com/310310/223584868-ce3bc51d-fe8c-4255-a1d0-7c528d8c06f8.png)
 
@@ -127,7 +130,7 @@ In the future, you'll have to do this any time you've made a change to `commands
 
 Your bot is ready to go! Invite it to your server by constructing an invite URL:
 
-```
+```text
 https://discord.com/oauth2/authorize?client_id=<your discord application id>&scope=applications.commands+bot
 ```
 

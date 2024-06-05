@@ -91,7 +91,7 @@ export async function sendResult(
 	// https://stackoverflow.com/a/35206069
 	const formData = new FormData();
 	formData.append('payload_json', JSON.stringify(msgJson));
-	formData.append('files[0]', image, 'remix.png');
+	formData.append('files[0]', image as Blob, 'remix.png');
 
 	const discordUrl = `https://discord.com/api/v10/webhooks/${env.DISCORD_APPLICATION_ID}/${job.interactionToken}`;
 	if (!job.remixRemix) {

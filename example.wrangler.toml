@@ -3,7 +3,7 @@ main = "src/index.ts"
 compatibility_date = "2023-01-24"
 
 kv_namespaces = [
-  { binding = "AVATAR_REMIX_FOLLOWUPS", id = "abc123" }
+  { binding = "AVATAR_REMIX_FOLLOWUPS", id = "<YOUR_ID>", preview_id = "<YOUR_PREVIEW_ID>" }
 ]
 
 [[queues.producers]]
