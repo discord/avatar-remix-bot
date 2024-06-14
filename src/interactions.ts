@@ -53,7 +53,7 @@ export async function interactionsHandler(
 	}
 
 	const body = await request.clone().arrayBuffer();
-	const isValidRequest = verifyKey(
+	const isValidRequest = await verifyKey(
 		body,
 		signature,
 		timestamp,
@@ -64,7 +64,8 @@ export async function interactionsHandler(
 		return new Response('Bad request signature.', { status: 401 });
 	}
 
-	const message = await request.json();
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	const message = await request.json<any>();
 	if (message.type === InteractionType.PING) {
 		// The `PING` message is used during the initial webhook handshake, and is
 		// required to configure the webhook in the developer portal.
@@ -147,7 +148,7 @@ export async function interactionsHandler(
 
 		// Show a modal
 		return new JsonResponse({
-			type: InteractionResponseType.APPLICATION_MODAL,
+			type: InteractionResponseType.MODAL,
 			data: {
 				title: isRemix ? 'Remix your remix' : 'Remix',
 				content: 'Tell me what you want to do.',
@@ -157,7 +158,7 @@ export async function interactionsHandler(
 		});
 	}
 
-	if (message.type === InteractionType.APPLICATION_MODAL_SUBMIT) {
+	if (message.type === InteractionType.MODAL_SUBMIT) {
 		const splits = message.data.custom_id.split(':');
 		const command = splits[0];
 		const payload = decodeURIComponent(splits[1]);
