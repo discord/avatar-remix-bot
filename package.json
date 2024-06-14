@@ -10,7 +10,7 @@
     "lint": "biome check ."
   },
   "dependencies": {
-    "discord-interactions": "^3.2.0",
+    "discord-interactions": "^4.0.0",
     "itty-router": "^3.0.11",
     "upng-js": "^2.1.0"
   },
