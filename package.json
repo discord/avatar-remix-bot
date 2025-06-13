@@ -20,6 +20,6 @@
     "@types/upng-js": "^2.1.2",
     "discord-api-types": "^0.38.0",
     "typescript": "^5.0.0",
-    "wrangler": "^3.59.0"
+    "wrangler": "^4.0.0"
   }
 }
