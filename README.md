@@ -16,7 +16,22 @@ Discord profile pictures are often pretty small, so if necessary it uses [Real-E
 
 This app runs as a Cloudflare Worker and uses the [Replicate](https://replicate.com?utm_source=project&utm_campaign=avatar-remix-bot-repo) API to run the above models serverlessly.
 
-![request flow](https://kroki.io/mermaid/svg/eNqVjzEOwjAMRfecIhfowlqJEzBxActNTCkNSbFjwfFJIgZQqRCDh299-_83Mi5nezj2xqgQA9NNSbLtur11Iak_BWSCe-KZuDerVTOi95ATlEul8oiER4zgMIQB3fzfL8nIGaYomdVlWKbHrgxc0tCb1fZXxFYGRV9IRUOuvSt4rR0bgK9ZzdYkuBRFr8TmU76VffG2ipumr0RPimmNGA==)
+```mermaid
+graph LR;
+
+user_request --> cloudflare_worker;
+cloudflare_worker --> add_to_queue;
+
+esrgan_callback --> cloudflare_worker;
+cloudflare_worker --> start_instruct_pix2pix_job;
+instruct_pix2pix_callback --> cloudflare_worker;
+
+cloudflare_worker --> send_result_to_user;
+
+enqueued_job --> queue_consumer
+queue_consumer --> start_esrgan_job;
+queue_consumer --> start_instruct_pix2pix_job;
+```
 
 ## Setup
 
